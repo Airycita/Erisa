@@ -12,6 +12,8 @@ const erisa = new Erisa({
 
 erisa.loadCommands('./source/commands').then(() => console.log('¡Comandos cargados!'));
 erisa.loadEvents('./source/events').then(() => console.log('¡Eventos cargados!'));
+
+erisa.init()
 ```
 
 # Disclaimer

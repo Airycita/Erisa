@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('../../structures/builders');
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require('../../structures/builders');
 
 module.exports = {
     name: 'play',
@@ -50,6 +50,12 @@ module.exports = {
         if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) {
             player.play();
         }
+        let buttons = {
+            pause: new ButtonBuilder().setCustomId('pause').setDisabled(false).setLabel('Pausar'),
+            skip: new ButtonBuilder().setCustomId('skip').setDisabled(false).setLabel('Saltar'),
+            stop: new ButtonBuilder().setCustomId('stop').setDisabled(false).setLabel('Detener')
+        }
+        let row = new ActionRowBuilder().addComponents(buttons.stop, buttons.pause, buttons.skip);
         return (await d.interaction.createMessage({ embeds: [
             new EmbedBuilder()
                 .setAuthor({ name: `${d.client.user?.username} DJ`, iconURL: `${d.client.user.avatarURL}` })
@@ -57,7 +63,7 @@ module.exports = {
                 .setDescription(`**[${song.title}](${song.uri})** ha sido añadido a la cola.`)
                 .setFooter({ text: `${d.interaction.member.guild.name} | ${platform === 'soundcloud' ? 'Potenciada por SoundCloud' : 'uwu'}`, icon_url: `${d.interaction.member.guild.iconURL}` })
                 .setColor('D1EAF9')
-        ] }))
+        ], components: [row] }));
 
     }
 }
