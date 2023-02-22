@@ -1,4 +1,6 @@
 # Carpetas
+node_modules
 
 # Archivos
 source/constructor.js
+package-lock.json

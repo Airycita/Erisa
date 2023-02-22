@@ -11,5 +11,9 @@
     "Discord.js"
   ],
   "author": "Erisa",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "kazagumo": "^2.3.2",
+    "shoukaku": "^3.3.1"
+  }
 }

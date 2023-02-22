@@ -11,7 +11,8 @@ module.exports = {
                 client.createGuildCommand(configuration.guild.id, {
                     name: command.name,
                     type: ApplicationCommandTypes.CHAT_INPUT,
-                    description: command.explan
+                    description: command.explan,
+                    options: command.options?.length !== 0 ? command.options : []
                 });
             });
             console.log(`¡Sesión iniciada! => ${client.user?.username}`);
