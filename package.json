@@ -1,0 +1,15 @@
+{
+  "name": "erisa",
+  "version": "0.0.1-a",
+  "description": "Aplicación privada para uso personal, de código abierto, por supuesto.",
+  "main": "source/index.js",
+  "scripts": {
+    "start": "node source/index.js"
+  },
+  "keywords": [
+    "Eris",
+    "Discord.js"
+  ],
+  "author": "Erisa",
+  "license": "MIT"
+}
