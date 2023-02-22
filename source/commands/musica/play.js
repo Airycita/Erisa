@@ -22,7 +22,13 @@ module.exports = {
         type: 3
     }],
     code: async d => {
-        if (!d.interaction.member.voiceState.channelID) return (await d.interaction.createMessage('No estás en un canal de voz.'));
+        if (!d.interaction.member.voiceState.channelID) return (await d.interaction.createMessage({ embeds: [
+            new EmbedBuilder()
+                .setAuthor({ name: `¡ALTO!`, iconURL: `${d.client.user.avatarURL}` })
+                .setDescription('No estás conectada a un canal de voz.')
+                .setFooter({ text: `${d.interaction.member.guild.name}`, icon_url: `${d.interaction.member.guild.iconURL}` })
+                .setColor('D1EAF9')
+        ] }));
         d.interaction.defer(); /* Básicamente, el defer nos da tiempo para que se procese la información. */
         const platform = d.interaction.data.options?.find(choice => choice.name === 'plataforma' && choice.type === 3)?.value || 'soundcloud';
         const search = d.interaction.data.options?.find(str => str.name === 'nombre' && str.type === 3)?.value;
@@ -44,7 +50,6 @@ module.exports = {
         if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) {
             player.play();
         }
-        console.log(song);
         return (await d.interaction.createMessage({ embeds: [
             new EmbedBuilder()
                 .setAuthor({ name: `${d.client.user?.username} DJ`, iconURL: `${d.client.user.avatarURL}` })
