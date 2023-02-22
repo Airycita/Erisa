@@ -10,7 +10,7 @@ class Erisa extends Client {
         super(`Bot ${options['token']}`, config);
         /* ----- PROPIEDADES ----- */
         this.commands = new Map();
-        this.db = new Database(options['database']).start();
+        this.db = (new Database(options['database'])).start();
         this.events = new Map();
         this.interactions = new Map();
     }

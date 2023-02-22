@@ -1,5 +1,6 @@
 # Carpetas
 node_modules
+source/database
 
 # Archivos
 source/constructor.js
