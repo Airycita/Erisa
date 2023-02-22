@@ -23,8 +23,8 @@ module.exports = {
         type: 3
     }],
     code: async d => {
+        if (d.interaction.member.id !== '1077733015846932530') return (await d.interaction.createMessage({ content: 'No tienes permiso para usar este comando.', flags: 64 }));
         const module = d.interaction.data.options?.find(choice => choice.name === 'modulo' && choice.type === 3)?.value || 'comandos';
-        d.interaction.defer();
         if (module === 'comandos') {
             await d.client.loadCommands('./source/commands');
             await d.client.commands.forEach(command => {

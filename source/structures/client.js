@@ -4,12 +4,13 @@ const { Database } = require('midb');
 
 class Erisa extends Client {
     constructor(options) {
+        /* ----- OPCIONES ----- */
         let config = { ...options };
         delete config['token'];
         super(`Bot ${options['token']}`, config);
         /* ----- PROPIEDADES ----- */
         this.commands = new Map();
-        this.db = new Database(options['database']);
+        this.db = new Database(options['database']).start();
         this.events = new Map();
         this.interactions = new Map();
     }
