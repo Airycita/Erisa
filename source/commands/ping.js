@@ -1,6 +1,6 @@
 const { Embed } = require('eris');
 const { ActionRowBuilder, EmbedBuilder, SelectMenuBuilder } = require('../structures/builders');
-
+ 
 module.exports = {
     name: 'ping',
     explan: 'Muestra la latencia de Erisa.',
