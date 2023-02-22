@@ -17,21 +17,21 @@ class Erisa extends Client {
     async loadCommands(dir) {
         if (!dir) throw new SyntaxError('Debes escribir un directorio en: loadCommands(dir)');
         let array = [];
-        new Loader().cache(dir, array).then(() => {
+        Loader.cache(dir, array).then(() => {
             array.forEach(command => this.commands.set(command.name, command));
         });
     }
     async loadEvents(dir) {
         if (!dir) throw new SyntaxError('Debes escribir un directorio en: loadEvents(dir)');
         let array = [];
-        new Loader().cache(dir, array).then(() => {
+        Loader.cache(dir, array).then(() => {
             array.forEach(event => this.events.set(event.name, event));
         });
     }
     async loadInteractions(dir) {
         if (!dir) throw new SyntaxError('Debes escribir un directorio en: loadCommands(dir)');
         let array = [];
-        new Loader().cache(dir, array).then(() => {
+        Loader.cache(dir, array).then(() => {
             array.forEach(interaction => this.interactions.set(interaction.name, interaction));
         });
     }

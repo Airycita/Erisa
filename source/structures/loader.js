@@ -1,7 +1,7 @@
 const { lstatSync, readdirSync } = require('fs'), { join } = require('path'), { cwd } = require('process');
 
 class Loader {
-    async cache(dir, array = []) {
+    static async cache(dir, array = []) {
         const files = readdirSync(join(cwd(), dir));
         if (!files) throw new Error('El directorio provisto no tiene ficheros.');
         for (let file of files) {
