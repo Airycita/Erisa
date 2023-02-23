@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('../../structures/builders');
+const { EmbedBuilder } = require('../structures/builders');
 const { Constants } = require('eris');
 const { ApplicationCommandTypes, ApplicationCommandOptionTypes } = Constants;
 
