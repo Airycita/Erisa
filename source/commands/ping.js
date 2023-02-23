@@ -1,9 +1,12 @@
 const { Embed } = require('eris');
 const { ActionRowBuilder, EmbedBuilder, SelectMenuBuilder } = require('../structures/builders');
+const { Constants } = require('eris');
+const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'ping',
     explan: 'Muestra la latencia de Erisa.',
+    type: ApplicationCommandTypes.CHAT_INPUT,
     code: async d => {
         const embed = new EmbedBuilder()
             .setAuthor({ name: `${d.client.user?.username} latency`, iconURL: `${d.client.user.avatarURL}` })

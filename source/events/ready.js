@@ -1,6 +1,4 @@
 const configuration = require('../constructor');
-const { Constants } = require('eris');
-const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'ready',
@@ -10,7 +8,7 @@ module.exports = {
             await client.commands.forEach(command => {
                 client.createGuildCommand(configuration.guild.id, {
                     name: command.name,
-                    type: ApplicationCommandTypes.CHAT_INPUT,
+                    type: command.type,
                     description: command.explan,
                     options: command.options?.length !== 0 ? command.options : []
                 });

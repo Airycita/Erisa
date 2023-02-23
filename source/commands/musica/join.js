@@ -1,6 +1,10 @@
+const { Constants } = require('eris');
+const { ApplicationCommandTypes } = Constants;
+
 module.exports = {
     name: 'join',
     explan: 'Me deja unirme al canal de voz donde te encuentras.',
+    type: ApplicationCommandTypes.CHAT_INPUT,
     code: async d => {
         if (!d.interaction.member.voiceState.channelID) return (await d.interaction.createMessage({ embeds: [
             new EmbedBuilder()

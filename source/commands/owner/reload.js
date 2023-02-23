@@ -6,6 +6,7 @@ const { ApplicationCommandTypes } = Constants;
 module.exports = {
     name: 'reload',
     explan: 'Recarga los módulos del core de Erisa.',
+    type: ApplicationCommandTypes.CHAT_INPUT,
     options: [{
         name: 'modulo',
         description: 'Módulo que deseas reiniciar.',
@@ -30,7 +31,7 @@ module.exports = {
             await d.client.commands.forEach(command => {
                 d.client.createGuildCommand(configuration.guild.id, {
                     name: command.name,
-                    type: ApplicationCommandTypes.CHAT_INPUT,
+                    type: command.type,
                     description: command.explan,
                     options: command.options?.length !== 0 ? command.options : []
                 });

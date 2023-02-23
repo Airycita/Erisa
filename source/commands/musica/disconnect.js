@@ -1,8 +1,11 @@
 const { EmbedBuilder } = require('../../structures/builders');
+const { Constants } = require('eris');
+const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'disconnect',
     explan: 'Me desconecta del canal de voz.',
+    type: ApplicationCommandTypes.CHAT_INPUT,
     code: async d => {
         if (!d.interaction.member.voiceState.channelID) return (await d.interaction.createMessage({ embeds: [
             new EmbedBuilder()

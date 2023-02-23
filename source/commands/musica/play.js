@@ -1,8 +1,11 @@
 const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require('../../structures/builders');
+const { Constants } = require('eris');
+const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'play',
     explan: 'Reproduce un poco de música. uwu',
+    type: ApplicationCommandTypes.CHAT_INPUT,
     options: [{
         name: 'nombre',
         description: 'Nombre de la canción que deseas buscar.',

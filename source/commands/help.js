@@ -1,9 +1,12 @@
 const { Embed } = require('eris');
 const { ActionRowBuilder, EmbedBuilder, SelectMenuBuilder } = require('../structures/builders');
+const { Constants } = require('eris');
+const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'help',
     explan: 'Despliega la lista de comandos de Erisa.',
+    type: ApplicationCommandTypes.CHAT_INPUT,
     code: async d => {
         const embed = new EmbedBuilder()
             .setAuthor({ name: `Comandos de ${d.client.user?.username}`, iconURL: `${d.client.user.avatarURL}` })

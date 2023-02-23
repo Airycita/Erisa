@@ -1,8 +1,11 @@
 const { EmbedBuilder } = require('../../structures/builders');
+const { Constants } = require('eris');
+const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'resume',
     explan: 'Reanuda la reproducción de una canción pausada.',
+    type: ApplicationCommandTypes.CHAT_INPUT,
     code: async d => {
         if (!d.interaction.member.voiceState.channelID) return (await d.interaction.createMessage({ embeds: [
             new EmbedBuilder()
