@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require('../../structures/builders')
+const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require('../../classes/builders')
 
 module.exports = {
     name: 'resume',

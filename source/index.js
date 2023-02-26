@@ -1,7 +1,8 @@
-const { Erisa } = require('./structures/client');
+const { Erisa } = require('./classes/client');
 const configuration = require('./constructor');
 const { Kazagumo, Plugins } = require('kazagumo');
 const { Connectors } = require('shoukaku');
+const { Erisascript } = require('./classes/scriptLoader');
 
 const erisa = new Erisa(configuration.client);
 
@@ -26,6 +27,9 @@ erisa.manager = new Kazagumo({
 }, new Connectors.Eris(erisa), nodes, {
     moveOnDisconnect: true
 })
+
+erisa.script = new Erisascript();
+(async () => await erisa.script.setFunctions('./source/parser/functions'))();
 
 
 erisa.init();

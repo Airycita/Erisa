@@ -1,4 +1,4 @@
-const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require('../../structures/builders');
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require('../../classes/builders');
 const { Constants } = require('eris');
 const { ApplicationCommandTypes } = Constants;
 

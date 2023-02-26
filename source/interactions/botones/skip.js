@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('../../structures/builders')
+const { EmbedBuilder } = require('../../classes/builders')
 
 module.exports = {
     name: 'skip',

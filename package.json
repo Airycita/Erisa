@@ -4,7 +4,8 @@
   "description": "Aplicación privada para uso personal, de código abierto, por supuesto.",
   "main": "source/index.js",
   "scripts": {
-    "start": "node source/index.js"
+    "start": "node source/index.js",
+    "parser": "node parser.js"
   },
   "keywords": [
     "Eris",
