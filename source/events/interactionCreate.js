@@ -17,7 +17,7 @@ module.exports = {
                 }
             /* Manejando los subcomandos. */
             } else if (command.options && command.options?.every(cmd => cmd.type === ApplicationCommandOptionTypes.SUB_COMMAND)) {
-                const subcommand = command.options[0];
+                const subcommand = command.options.find(subcommand => subcommand.name === interaction.data.options[0].name);
                 try {
                     subcommand.callback({ client, command, db, interaction });
                 } catch(e) {

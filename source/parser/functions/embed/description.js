@@ -1,15 +1,16 @@
 module.exports = {
     name: 'description',
     explan: 'Pone una descripción al mensaje embed.',
+    usage: '$description: Mi hermosa descripción.;',
     params: [{
         name: 'texto',
         description: 'El texto para la descripción.',
         required: true
     }],
-    code: async (d, texto, index = 0) => {
+    code: async (d, embed, texto) => {
         if (!texto) throw Error('El texto para el embed es requerido.');
         if (texto.length > 4000) texto = texto.slice(0, 4000);
-        d.message.embeds[index].setDescription(texto);
+        embed.setDescription(texto);
         return d;
     }
 }

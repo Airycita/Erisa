@@ -1,5 +1,5 @@
 const { lstatSync, readdirSync } = require('fs'), { join } = require('path'), { cwd } = require('process');
-const { Loader } = require('./loader');
+const { Loader } = require('./loader'), { EmbedBuilder } = require('../classes/builders');
 
 /**
  * @classdesc Erisascript es una clase para leer códigos basados en strings.
@@ -41,20 +41,21 @@ class Erisascript {
             // Borramos caracteres inútiles en el inicio y final de las líneas.
             line = line.trim();
             // Datos del lexer.
-            let pos = 0, length = line.length, char = '', pivote = 0;
+            let pos = 0, length = line.length, char = '';
             let allowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             // Comenzamos el loop.
             while (pos < length) {
                 char = line[pos];
-                if (char === '@') { pos++; continue; }
+                if (char === '$') { pos++; continue; }
                 else if (char === ':') {
                     let args = '';
                     pos++;
+                    //line = line.escape();
                     while (line[pos] !== ';' && pos < length) {
                         args += line[pos];
                         pos++;
                     }
-                    if (line[pos] !== ';') throw Error('ErisaLexer: Se esperaba un "]" que cerrara la función.');
+                    if (line[pos] !== ';') throw Error('ErisaLexer: Se esperaba un ";" que cerrara la función.');
                     // Si la función se cierra...
                     else if (line[pos] === ';') {
                         // Poniendo los args en un array.
@@ -74,7 +75,7 @@ class Erisascript {
                         pos++;
                     }
                     // Si la función no se encuentra, regresa un error.
-                    if (!this.functions.get(res)) throw Error(`ErisaLexer: ${res} no es una función.`);
+                    if (!this.functions.get(res)) { tokens.push({ type: 'string', value: res, line: lineNumber }); continue; }
                     // Pushea la función encontrada.
                     tokens.push({ type: 'function', value: res, line: lineNumber });
                 // Si encuentra un espacio, que continúe con el siguiente elemento.
@@ -92,7 +93,9 @@ class Erisascript {
      * @param {any} ctx The message context.
      * @param {Array<any>} tokens El array de tokens procesados por el lexer.
      */
-    async #parse (ctx, tokens) {
+    async #parse (tokens) {
+        let embed = new EmbedBuilder()
+        let data = { content: '', embeds: [] };
         const length = tokens.length;
         let pos = 0;
         while (pos < length) {
@@ -102,14 +105,20 @@ class Erisascript {
                 let isParams = tokens[pos + 1].type === 'parameters';
                 if (!isParams) throw new Error('ErisaParser: Se esperaban argumentos para la función, pero no se obtuvo nada.');
                 let func = this.functions.get(token.value);
-                if (!func) throw new Error(`ErisaParser: ${token.value} no es una función.`);
+                if (!func) { continue; /* throw new Error(`ErisaParser: ${token.value} no es una función.`);*/ }
                 let parameters = tokens[pos + 1].value;
                 // Ejecutando la función.
-                func.code(ctx, ...parameters);
+                func.code(data, embed, ...parameters);
                 // Siguiendo con los tokens...
                 pos += 2;
-            } else throw new Error(`ErisaParser: No se esperaba ${token.type}`);
+            } else if (token.type === 'string') {
+                data.content = token.value;
+                pos += 1;
+            } else throw new Error(`Unexpected token: ${token.value}`);
         }
+        data.content = data.content === 'null' ? null : data.content;
+        data.embeds = !embed.toJSON().title && !embed.toJSON().description && !embed.toJSON().image && !embed.toJSON().thumbnail && !embed.toJSON().author && !embed.toJSON().footer ? [] : [embed];
+        return data;
     }
 
     /**
@@ -117,9 +126,9 @@ class Erisascript {
      * @param {Any} ctx El contexto del mensaje.
      * @param {string} code El código basa en strings.
      */
-    async interprete (ctx, code, debug = false) {
+    async interprete (code, debug = false) {
         let tokens = await this.#tokenize(code, [], debug);
-        await this.#parse(ctx, tokens);
+        return (await this.#parse(tokens));
     }
 
 }
@@ -134,10 +143,12 @@ String.prototype.escape = function () {
     this.replaceAll('\n', '%INT%')
         .replaceAll('<', '%LT%')
         .replaceAll('>', '%GT%')
+        .replaceAll(':', '%DB%')
 }
 
 String.prototype.unescape = function () {
     this.replaceAll('%INT%', '\n')
         .replaceAll('%LT%', '<')
         .replaceAll('%GT%', '>')
+        .replaceAll('%DB%', ':')
 }

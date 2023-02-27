@@ -1,6 +1,7 @@
 module.exports = {
     name: 'footer',
     explan: 'Pone un footer al mensaje embed.',
+    usage: '$footer: Hola | https://icon.png;',
     params: [{
         name: 'texto',
         description: 'El texto del footer.',
@@ -10,8 +11,8 @@ module.exports = {
         description: 'El ícono del footer.',
         required: false
     }],
-    code: async (d, texto, iconURL, index = 0) => {
-        iconURL ? d.message.embeds[index].setFooter({ text: texto, icon_url: iconURL }) : d.message.embeds[index].setFooter({ text: texto });
+    code: async (d, embed, texto, iconURL) => {
+        iconURL ? embed.setFooter({ text: texto, icon_url: iconURL }) : embed.setFooter({ text: texto });
         return d;
     }
 }

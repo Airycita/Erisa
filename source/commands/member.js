@@ -2,6 +2,22 @@ const { EmbedBuilder } = require('../classes/builders');
 const { Constants } = require('eris');
 const { ApplicationCommandTypes, ApplicationCommandOptionTypes } = Constants;
 
+/**
+ * 
+ * @param {string} username El nombre de usuario para generar un mensaje bonito.
+ * @returns {string}
+ */
+const messages = (username) => {
+    let texts = [
+        'Si me pudiera enamorar de alguien, sería de @user;. <3',
+        'No hay persona más bonita que @user;. uwu',
+        'Hola, espero la información de @user; te sea útil.',
+        'Hola @user;, soy tu fan. uwu',
+        'Heyyyy @user!;'
+    ]
+    return texts[Math.floor(Math.random() * texts.length)].replace('@user;', username);
+}
+
 module.exports = {
     name: 'member',
     explan: 'Muestra información miscelánea de un miembro del servidor.',
@@ -33,7 +49,7 @@ module.exports = {
                 embeds: [
                     new EmbedBuilder()
                         .setAuthor({ name: `Información de ${member.user?.username}.`, iconURL: `${d.client.user.avatarURL}` })
-                        .setDescription(`Si me pudiera enamorar de alguien, sería de ${member.user.username}. <3`)
+                        .setDescription(`${member.user?.username === d.client.user?.username ? 'Hey! soy yo. uwu' : messages(member.user?.username)}`)
                         .setThumbnail(`${member.user?.avatarURL}`)
                         .addFields([{
                             name: 'Nombre de usuario:',

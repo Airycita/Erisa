@@ -133,6 +133,10 @@ class EmbedBuilder {
         this.footer = { text, icon_url };
         return this;
     }
+
+    toJSON() {
+        return { ...this }
+    }
 }
 
 const TextInputStyle = {

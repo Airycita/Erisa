@@ -1,6 +1,7 @@
 module.exports = {
     name: 'author',
     explan: 'Pone un autor al mensaje embed.',
+    usage: '$author: Hola | https://avatar.png;',
     params: [{
         name: 'nombre',
         description: 'El nombre del autor.',
@@ -10,8 +11,8 @@ module.exports = {
         description: 'El avatar del autor.',
         required: false
     }],
-    code: async (d, nombre, iconURL, index = 0) => {
-        iconURL ? d.message.embeds[index].setAuthor({ name: nombre, iconURL: iconURL }) : d.message.embeds[index].setAuthor({ name: nombre });
+    code: async (d, embed, nombre, iconURL) => {
+        iconURL ? embed.setAuthor({ name: nombre, iconURL: iconURL }) : embed.setAuthor({ name: nombre });
         return d;
     }
 }
