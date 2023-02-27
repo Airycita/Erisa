@@ -2,7 +2,7 @@ const { Erisa } = require('./classes/client');
 const configuration = require('./constructor');
 const { Kazagumo, Plugins } = require('kazagumo');
 const { Connectors } = require('shoukaku');
-const { Erisascript } = require('./classes/scriptLoader');
+const { Erisascript } = require('./classes/script');
 
 const erisa = new Erisa(configuration.client);
 

@@ -46,19 +46,21 @@ class Erisascript {
             // Comenzamos el loop.
             while (pos < length) {
                 char = line[pos];
-                if (char === '$') { pos++; continue; }
-                else if (char === '[') {
+                if (char === '@') { pos++; continue; }
+                else if (char === ':') {
                     let args = '';
                     pos++;
-                    while (line[pos] !== ']' && pos < length) {
+                    while (line[pos] !== ';' && pos < length) {
                         args += line[pos];
                         pos++;
                     }
-                    if (line[pos] !== ']') throw Error('ErisaLexer: Se esperaba un "]" que cerrara la función.');
+                    if (line[pos] !== ';') throw Error('ErisaLexer: Se esperaba un "]" que cerrara la función.');
                     // Si la función se cierra...
-                    else if (line[pos] === ']') {
+                    else if (line[pos] === ';') {
                         // Poniendo los args en un array.
-                        let parameters = args.split(';') || [];
+                        let parameters = args.split('|') || [];
+                        // Borrando espacios extras de los parámetros.
+                        parameters = parameters.map(param => param.trim());
                         // Pusheando el token de args.
                         tokens.push({ type: 'parameters', value: parameters, line: lineNumber });
                         pos++;
