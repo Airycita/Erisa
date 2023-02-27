@@ -1,7 +1,9 @@
 # Carpetas
 node_modules
 source/database
+source/parser/functions/tests
 
 # Archivos
 source/constructor.js
 package-lock.json
+parser.js
