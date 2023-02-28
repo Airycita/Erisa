@@ -5,7 +5,7 @@ const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'help',
-    explan: 'Despliega la lista de comandos de Erisa.',
+    description: 'Despliega la lista de comandos de Erisa.',
     type: ApplicationCommandTypes.CHAT_INPUT,
     code: async d => {
         const embed = new EmbedBuilder()

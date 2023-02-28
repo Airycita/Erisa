@@ -4,7 +4,7 @@ const { ApplicationCommandTypes } = Constants;
 
 module.exports = {
     name: 'ping',
-    explan: 'Muestra la latencia de Erisa.',
+    description: 'Muestra la latencia de Erisa.',
     type: ApplicationCommandTypes.CHAT_INPUT,
     code: async d => {
         const embed = new EmbedBuilder()

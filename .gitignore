@@ -4,6 +4,7 @@ source/database
 source/parser/functions/tests
 
 # Archivos
+source/commands/owner/reload
 source/constructor.js
 package-lock.json
 parser.js

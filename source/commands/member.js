@@ -20,7 +20,7 @@ const messages = (username) => {
 
 module.exports = {
     name: 'member',
-    explan: 'Muestra información miscelánea de un miembro del servidor.',
+    description: 'Muestra información miscelánea de un miembro del servidor.',
     type: ApplicationCommandTypes.CHAT_INPUT,
     options: [{
         name: 'info',

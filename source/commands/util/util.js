@@ -4,7 +4,7 @@ const { ApplicationCommandTypes, ApplicationCommandOptionTypes } = Constants;
 
 module.exports = {
     name: 'util',
-    explan: 'Comandos útiles de Erisa.',
+    description: 'Comandos útiles de Erisa.',
     type: ApplicationCommandTypes.CHAT_INPUT,
     options: [{
         name: 'function',

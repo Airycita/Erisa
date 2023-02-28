@@ -4,7 +4,7 @@ const { ApplicationCommandTypes, ApplicationCommandOptionTypes } = Constants;
 
 module.exports = {
     name: 'mod',
-    explan: 'Comandos de moderación de Erisa.',
+    description: 'Comandos de moderación de Erisa.',
     type: ApplicationCommandTypes.CHAT_INPUT,
     options: [{
         name: 'ban',
