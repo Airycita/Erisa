@@ -1,13 +1,11 @@
-const { Client } = require('eris');
+const { Client } = require('oceanic.js');
 const { Loader } = require('./loader');
 const { Database } = require('midb');
 
 class Erisa extends Client {
     constructor(options) {
         /* ----- OPCIONES ----- */
-        let config = { ...options };
-        delete config['token'];
-        super(`Bot ${options['token']}`, config);
+        super(options);
         /* ----- PROPIEDADES ----- */
         this.commands = new Map();
         this.db = (new Database(options['database'])).start();

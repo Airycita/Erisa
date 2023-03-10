@@ -1,4 +1,4 @@
-const { Constants } = require('eris');
+const { Constants } = require('oceanic.js');
 
 class ActionRowBuilder {
     constructor(setType = true) {

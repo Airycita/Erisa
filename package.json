@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "kazagumo": "^2.3.2",
+    "oceanic.js": "^1.5.1",
     "shoukaku": "^3.3.1"
   }
 }

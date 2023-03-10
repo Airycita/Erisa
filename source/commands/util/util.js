@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('../../classes/builders');
-const { Constants } = require('eris');
+const { Constants } = require('oceanic.js');
 const { ApplicationCommandTypes, ApplicationCommandOptionTypes } = Constants;
 
 module.exports = {
